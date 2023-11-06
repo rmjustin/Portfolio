@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <title>TestTransfer</title>
+    <meta name="author" content="">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="./css/responsive.css" rel="stylesheet">
+    <link href="./css/navbar.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#header').load('index.html #header');
+            $('#footer').load('index.html #footer');
+        });
+    </script>
+</head>
+
+<body class="html">
+    <div class="grid-container">
+        <div class="item1" id="header" style="border:none;"></div>
+
+        <div class="item3">
+            
+        </div>
+
+        <div class="item5" id="footer" style="border:none;"></div>
+    </div>
+</body>
+
+</html>

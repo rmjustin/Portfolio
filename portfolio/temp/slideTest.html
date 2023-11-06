@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <title>TestTransfer</title>
+    <meta name="author" content="">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="./css/responsive.css" rel="stylesheet">
+    <link href="./css/navbar.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#header').load('home.html #header');
+            $('#footer').load('home.html #footer');
+        });
+    </script>
+    <style>
+        .carousel {
+            width: fit-content;
+            /* text-align: center; */
+            font-size: 30px;
+            line-height: 45px;
+            height: 45px;
+            overflow: hidden;
+        }
+
+        .carousel .change_inner {
+            transform-origin: bottom right;
+            animation: rotate 4s infinite;
+        }
+
+        @keyframes rotate {
+
+            0%,
+            15% {
+                transform: translateY(0%);
+            }
+
+            50%,
+            66% {
+                transform: translateY(-45px);
+            }
+
+            90%,
+            100% {
+                transform: translateY(-90px);
+            }
+        }
+    </style>
+</head>
+
+<body class="resume">
+    <div class="grid-container">
+        <div class="item1" id="header"></div>
+        <div class="item3">
+
+
+            <div style="display:inline-flex;"><h2 style="width:fit-content;margin:0;">I like</h2>
+            <div class="carousel">
+                <div class="change_inner">
+                    <div class="element">hello</div>
+                    <div class="element">a</div>
+                    <div class="element">gg</div>
+                </div>
+            </div></div>
+
+
+
+        </div>
+            <div class="item5" id="footer"></div>
+        
+    </div>
+</body>
+
+</html>

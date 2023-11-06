@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <title>My Groceries</title>
+    <meta name="author" content="Justin Morefield">
+    <meta name="description" content="Home Page">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="./css/index.css" rel="stylesheet">
+    <link href="./css/grocery.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script src="components/header.js" type="text/javascript" defer></script>
+    <script src="components/footer.js" type="text/javascript" defer></script>
+    <script src="js/script.js" type="text/javascript" defer></script>
+</head>
+
+<body style="margin:0;" class="groceries" style="overflow:scroll;">
+    <div class="grid-container">
+
+
+        <div class="menu" id="header">
+            <header-component></header-component>
+        </div>
+
+        <div class="main">
+            <div class="row">
+                <div class="col-12 col-s-12 formInputs">
+                    <form>
+                        <input class="inputs" type="text" name="itemName" id="itemName" placeholder="Item Name" style="height: 25px;"/>
+                        <input class="inputs" type="text" name="itemAmount" id="itemAmount" placeholder="Item Amount" style="height: 25px;"/>
+                        <select class="inputs" id="category" style="height: 25px;">
+                            <option value="" disabled selected>Category</option>
+                            <option value="Vegetables">Vegetables</option>
+                            <option value="Fruits">Fruits</option>
+                            <option value="Grains">Grains</option>
+                            <option value="Canned Goods">Canned Goods</option>
+                            <option value="Snacks">Snacks</option>
+                            <option value="Beverages">Beverages</option>
+                            <option value="Meat">Meat</option>
+                            <option value="Dairy">Dairy</option>
+                            <option value="Frozen">Frozen</option>
+                            <option value="Household">Household</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <div class="buttons">
+                            <input class="inputs Gbutton" type="button" value="Add" id="addButton" onClick="" name="add" />
+                            <input class="inputs Gbutton" type="button" value="Save" id="saveButton" onClick="" name="save" />
+                            <input class="inputs Gbutton" type="button" value="Delete" id="deleteButton" onClick=""
+                                name="delete" />
+                            <input class="inputs Gbutton" type="button" value="Delete  All" id="deleteAllBtn" onClick=""
+                                name="deleteAll" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="list">
+            <div class="row">
+                <div class="col-12 col-s-12 outputWrap">
+                    <div class="output" id="output1">
+                        <div id="list" style="font-size:15px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            window.onload = function load() {
+                if (localStorage.getItem('grocery')) {
+                    let retString = localStorage.getItem('grocery');
+                    let retArray = JSON.parse(retString);
+                    checkboxes = retArray;
+                    console.log(checkboxes);
+                    let k;
+                    for (k = 0; k < checkboxes.length; k++) {
+                        list.innerHTML += checkboxes[k];
+                    }
+                    items = checkboxes.length;
+                }
+            }
+
+            const txt1 = document.getElementById('itemName');
+            const txt2 = document.getElementById('itemAmount');
+            const btn1 = document.getElementById('addButton');
+            const btn2 = document.getElementById('saveButton');
+            const btn3 = document.getElementById('deleteButton');
+            const btn4 = document.getElementById('deleteAllBtn');
+            const select = document.getElementById('category');
+            let checkboxes = [];
+            let items = 0;
+            let amount;
+            let cat;
+
+            function added() {
+                if (!txt1.value) {
+                    txt1.placeholder="Please enter a value";
+                    txt1.classList.add("warning");
+                    return false;
+                }
+                if (!txt2.value) {
+                    amount = '&nbsp' + 'x1';
+                } else {
+                    amount = '&nbsp' + 'x' + txt2.value;
+                }
+                if (!select.value) {
+                    cat = "Other"
+                } else {
+                    cat = select.value;
+                }
+
+                let item = '<div class="item" id="' + items + '"><input type="checkbox" id="' + txt1.value + select.value + '" value="' + txt1.value + select.value + '" name="' + txt1.value + '" onClick=""/><label for="' + txt1.value + select.value + '">' + cat + ': ' + txt1.value + amount + '</label></div>';
+                checkboxes.push(item);
+                list.innerHTML += checkboxes[items];
+                items += 1;
+                document.getElementById("itemName").value = '';
+                txt1.placeholder='Item Name';
+                txt1.classList.remove("warning");
+                document.getElementById("itemAmount").value = '';
+                document.getElementById("category").value = "";
+            }
+
+            function saved() {
+                let toSave = JSON.stringify(checkboxes);
+                localStorage.setItem('grocery', toSave);
+                console.log(toSave);
+            }
+
+            function deleteBtn() {
+                let checked = document.querySelectorAll("input[type='checkbox']:checked");
+                console.log(list);
+                console.log(checked);
+                console.log(checkboxes);
+                checked.forEach(function (cb) {
+                    console.log(cb.parentElement);
+                    let i;
+                    for (i = 0; i < checkboxes.length; i++) {
+                        if (cb.parentElement.id == i) {
+
+                            console.log(checkboxes[i]);
+                            let child = document.getElementById(i);
+                            child.remove();
+                            checkboxes.splice(i, 1);
+                            items -= 1;
+                            let update = document.querySelectorAll("div[class='item']");
+                            console.log(update);
+                            let j;
+                            for (j = 0; j < checkboxes.length; j++) {
+                                update[j].setAttribute("id", j);
+                            }
+                        }
+                    }
+                });
+            }
+
+            function deleteAll() {
+                checkboxes = [];
+                items = 0;
+                list.innerHTML = '';
+                localStorage.removeItem('grocery');
+                console.log(checkboxes);
+                console.log(list.innerHTML);
+            }
+
+            btn1.addEventListener('click', added);
+            btn2.addEventListener('click', saved);
+            btn3.addEventListener('click', deleteBtn);
+            btn4.addEventListener('click', deleteAll);
+        </script>
+
+        <div class="foot" id="footer">
+            <footer-component></footer-component>
+        </div>
+
+
+    </div>
+</body>
+
+</html>

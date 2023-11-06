@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <title>Web</title>
+    <meta name="author" content="">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="./css/responsive.css" rel="stylesheet">
+    <link href="./css/navbar.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#header').load('index.html #header');
+            $('#footer').load('index.html #footer');
+        });
+    </script>
+</head>
+
+<body class="html">
+    <div class="grid-container">
+        <div class="item1" id="header" style="border:none;"></div>
+
+        <div class="item3">
+            <div class ="myMemory">
+            <h1 style="color: white;margin:0;">MyMemory</h1>
+            <iframe src="../memoryproject/index.html" allowfullscreen width="100%" height="100%" title="MyMemory"><a
+                    href="../memoryproject/index.html">Link for browsers that don't support iframes</a></iframe>
+        </div></div>
+        <div class="item6">
+        </div>
+        <div class="item4" style="height:fit-content;">
+            <section class="row rowC">
+            <article class="card">
+                <div class="text" style="text-align: center;">
+                    <p class="p">A project I'm currently working on is a mobile first web app. The purpose of this project is to
+                        help with memory and organization for everyday living as well as what can span any duration
+                        of time. Features it provides include saved notes, grocery lists, finance management and more.
+                    </p>
+                </div>
+            </article>
+
+        </section>
+        </div>
+
+        <div class="item5" id="footer" style="border:none;"></div>
+    </div>
+</body>
+
+</html>

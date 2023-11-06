@@ -1,0 +1,284 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    height: 100vh;
+    /* width */
+    ::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: #888;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+    ::-webkit-scrollbar-corner {
+        background-color: transparent;
+    }
+}
+
+.menu {
+    grid-area: menu;
+    background-color: white;
+}
+
+.main {
+    grid-area: main;
+    background-color: white;
+}
+
+.welcomeWrap {
+    margin: 5%;
+    position: relative;
+}
+
+div.welcomeWrap::before,
+div.welcomeWrap::after {
+  position: absolute;
+  content: "";
+  width: 50%;
+  height: 35%;
+}
+
+div.welcomeWrap::before {
+  left: 0;
+  top: 0;
+  border-left: 5px solid black;
+  border-top: 5px solid black;
+}
+
+div.welcomeWrap::after {
+    bottom: 0;
+    right: 0;
+    border-right: 5px solid black;
+    border-bottom: 5px solid black;
+}
+
+.foot {
+    grid-area: foot;
+    background-color: white;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-areas:
+        'menu main main main main main'
+        'menu main main main main main'
+        'menu main main main main main'
+        'foot foot foot foot foot foot';
+    gap: 0px;
+    padding: 0px;
+    height: 100vh;
+    grid-template-columns: 1fr 5fr;
+    grid-template-rows: auto 1fr auto;
+}
+
+.welcomeText {
+    line-height: 1.5em;
+    font-size: 18px;
+    overflow:hidden;
+}
+
+h1 {
+    font-size: 5em;
+    margin:0;
+    
+}
+
+.opener {
+    text-decoration: underline;
+}
+
+.intro {
+    display: flex;
+    padding: 15% 15% 10% 15%;
+    
+}
+.welcome {
+    flex-shrink: 0;
+}
+
+.frontPage {
+    padding: 0% 15% 10% 15%;
+    height:fit-content;
+    overflow:hidden;
+}
+
+
+@media screen and (max-width: 400px) {
+    .grid-container {
+        display: grid;
+        grid-template-areas:
+            'menu menu menu menu menu menu'
+            'main main main main main main'
+            'main main main main main main'
+            'foot foot foot foot foot foot';
+        gap: 5px;
+        padding: 5px;
+        height: 100vh;
+        grid-template-columns: 1fr 4fr 1fr;
+        grid-template-rows: auto 1fr auto;
+    }
+    
+    .menu {
+        border-style: none;
+        border-image:none;
+    }
+  }
+
+.box {
+    word-wrap: break-word;
+    overflow: visible;
+    text-align: center;
+    text-overflow: ellipsis;
+    padding: 10px; 
+    background-color: black;
+    border:5px solid slategray;
+    margin: 5px 0px;
+}
+
+table, th, td {
+    border: 2px solid White;
+    color:white;
+    width:auto;
+  }
+table {
+    font-size:1.17em;
+}
+th {
+    font-size:1em;
+
+}
+td {
+    font-size: .8em;
+}
+
+@media screen and (max-width:750px) {
+    table {
+        font-size:1em;
+    }
+    th {
+        font-size:.9em;
+    
+    }
+    td {
+        font-size:.7em;
+    }
+}
+
+/* For mobile phones: */
+[class*="col-"] {
+    width: 100%;
+}
+
+
+@media only screen and (min-width: 600px) {
+
+    /* For tablets: */
+    .col-s-1 {
+        width: 8.33%;
+    }
+
+    .col-s-2 {
+        width: 16.66%;
+    }
+
+    .col-s-3 {
+        width: 25%;
+    }
+
+    .col-s-4 {
+        width: 33.33%;
+    }
+
+    .col-s-5 {
+        width: 41.66%;
+    }
+
+    .col-s-6 {
+        width: 50%;
+    }
+
+    .col-s-7 {
+        width: 58.33%;
+    }
+
+    .col-s-8 {
+        width: 66.66%;
+    }
+
+    .col-s-9 {
+        width: 75%;
+    }
+
+    .col-s-10 {
+        width: 83.33%;
+    }
+
+    .col-s-11 {
+        width: 91.66%;
+    }
+
+    .col-s-12 {
+        width: 100%;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+
+    /* For desktop: */
+    .col-1 {
+        width: 8.33%;
+    }
+
+    .col-2 {
+        width: 16.66%;
+    }
+
+    .col-3 {
+        width: 25%;
+    }
+
+    .col-4 {
+        width: 33.33%;
+    }
+
+    .col-5 {
+        width: 41.66%;
+    }
+
+    .col-6 {
+        width: 50%;
+    }
+
+    .col-7 {
+        width: 58.33%;
+    }
+
+    .col-8 {
+        width: 66.66%;
+    }
+
+    .col-9 {
+        width: 75%;
+    }
+
+    .col-10 {
+        width: 83.33%;
+    }
+
+    .col-11 {
+        width: 91.66%;
+    }
+
+    .col-12 {
+        width: 100%;
+    }
+}

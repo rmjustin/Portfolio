@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CalendarTest</title>
+    <link href="./css/style.css" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <div class="wrapper">
+
+        <div class="scheduler" id="scheduler">
+            <div class="schedule" id="scheduledDay"></div>
+            <label class="labels">Event Name:</label>
+            <input type="text" name="eventName" id="eventName" placeholder="" class="schedule" />
+            <br>
+            <label class="labels">Start Time:</label>
+            <input type="text" name="startTime" id="startTime" class="schedule" />
+            <select id="category">
+                <option value="AM">AM</option>
+                <option value="PM">PM</option>
+            </select>
+            <br>
+            <label class="labels">&#x25BC;Description (optional):</label><br>
+            <textarea name="description" id="description" rows="4" cols="40"></textarea>
+            <br>
+            <div class="buttons">
+                <button type="button" name="saveMe" id="saveMe" class="button" onclick="saving()">Save</button>
+                <button type="button" name="cancelMe" id="cancelMe" class="button"
+                    onclick="schedule('close', '1',0)">Cancel</button>
+            </div>
+
+        </div>
+
+
+        <div class="calendar" id="calendar">
+            <div class="header" id="header">
+                <div class="left">
+                    <span id="prev" class="material-symbols-rounded" onclick="backward()">chevron_left</span>
+                </div>
+                <div class="month" id="month">
+
+                </div>
+                <div class="right">
+                    <span id="next" class="material-symbols-rounded" onclick="forward()">chevron_right</span>
+                </div>
+            </div>
+            <ul class="dayName" id="dayName">
+                <li id="Sun">Sun</li>
+                <li id="Mon">Mon</li>
+                <li id="Tue">Tue</li>
+                <li id="Wed">Wed</li>
+                <li id="Thu">Thu</li>
+                <li id="Fri">Fri</li>
+                <li id="Sat">Sat</li>
+            </ul>
+
+            <ul class="dayList" id="dayList">
+
+            </ul>
+
+        </div>
+
+        <!-- <div class="notebook">
+
+        </div> -->
+    </div>
+
+
+
+
+
+    <script>
+        let direction = 0;
+        let yearCycle = 0;
+        let today;
+        let namedMonth;
+        let currMonth;
+        let months = ['January', 'February', 'March', 'April', 'May', 'June',
+            'July', 'August', 'September', 'October', 'November', 'December'];
+
+
+        window.onload = function load() {
+            createCalendar(direction);
+            currentDay();
+        }
+
+
+
+        //set currentDay to active
+        function currentDay() {
+            let date = new Date();
+            currMonth = date.getMonth();
+            let current = document.getElementById("" + months[currMonth] + '_' + date.getDate() + "");
+            current.setAttribute('class', 'active');
+        }
+
+
+
+        function schedule(option, id, year) {
+            let change = document.getElementById('scheduler');
+            let tempID = id;
+            change.setAttribute('name', tempID);
+            id = id.toString().replace('_', ' ').split(' ').reverse().join(' ');
+            document.getElementById("scheduledDay").innerHTML = id.replace('_', ' ') + ' ' + year;
+
+            if (option === 'open') {
+                change.style.display = 'block';
+            } else {
+                change.style.display = 'none';
+            }
+        }
+
+
+
+        function saving() {
+            let event = document.getElementById('eventName');
+            let start = document.getElementById('startTime');
+            let timeOfDay = document.getElementById('category');
+            let description = document.getElementById('description');
+            if(event === "") {
+                return;
+            }
+            let symbol = document.getElementById('scheduler').getAttribute('name');
+            document.getElementById(symbol).innerHTML += '&#x25BC;';
+            let toStore = symbol + ' ' + event.value + " " + start.value + timeOfDay.value + " " + description.value;
+            console.log(toStore);
+            event.value = '';
+            startTime.value = '';
+            description.value = '';
+            schedule('close', '1', 0);
+        }
+
+
+
+        //Calc # days in month
+        function daysInMonth(year, month) {
+            return new Date(year, month, 0).getDate();
+        }
+
+
+
+        function createCalendar(direction) {
+            let date = new Date();
+            //returns month as integer 0-11
+            let prevMonth = (date.getMonth() + (direction - 1) % 12);
+            let month = (date.getMonth() + direction) % 12;
+            namedMonth = months[month];
+            let nextMonth = (date.getMonth() + (direction + 1)) % 12;
+
+            //sets the year if cycled forward/backward
+            let year = date.getFullYear();
+            year += yearCycle;
+
+            //calc day of month to set for the weekday on each end
+            let weekdate = new Date((month + 1) + '-1-' + year);
+            let firstDayofMonth = weekdate.getDay();
+            let lastDayofMonth = new Date(year, (month + 1), 0);
+            today = (date.getDate());
+
+            addDaysToHTML(daysInMonth(year, month + 1), firstDayofMonth, lastDayofMonth.getDay(), prevMonth, nextMonth, year);
+
+            let headMonth = document.createElement("div");
+            headMonth.setAttribute('id', month);
+            let titleMonth = document.createElement("h1");
+            titleMonth.innerHTML = months[month] + ' ' + year;
+            headMonth.appendChild(titleMonth);
+            document.getElementById("month").appendChild(headMonth);
+
+            //highlight the current day if it's the present month
+            if (month == currMonth) {
+                currentDay();
+            }
+        }
+
+
+
+
+        function addDaysToHTML(days, startDay, endDay, prevMonth, nextMonth, year) {
+
+            if (startDay != 0) {
+                let prevLastDay = daysInMonth(year, prevMonth + 1);
+
+                let offset = prevLastDay - startDay + 1;
+
+                for (let j = 0; j < startDay; j++) {
+                    let startOffset = "<li class='prevMonth'>" + offset + "<br></li>";
+                    document.getElementById("dayList").innerHTML += startOffset;
+                    offset++;
+                }
+            }
+            for (let i = 0; i < days; i++) {
+                let dayNum = "<li id='" + namedMonth + '_' + (i + 1) + "' onclick=schedule('open',this.id," + 
+                                year + ")><div style='padding-top: 5px;'>" + (i + 1) + "</div></li>";
+                document.getElementById("dayList").innerHTML += dayNum;
+            }
+            if (endDay != 6) {
+                let offset = 6 - endDay;
+                for (let k = 1; k <= offset; k++) {
+                    let endOffset = "<li class='nextMonth'>" + k + "<br></li>";
+                    document.getElementById("dayList").innerHTML += endOffset;
+                }
+            }
+        }
+
+
+
+        function forward() {
+            direction++;
+            if (document.getElementById("month").firstElementChild.id == 11) {
+                yearCycle++;
+            }
+            document.getElementById("month").removeChild(document.getElementById("month").firstElementChild);
+            document.getElementById("dayList").innerHTML = "";
+            createCalendar(direction);
+        }
+
+
+
+        function backward() {
+            direction--;
+            if (document.getElementById("month").firstElementChild.id == 0) {
+                yearCycle--;
+            }
+            document.getElementById("month").removeChild(document.getElementById("month").firstElementChild);
+            document.getElementById("dayList").innerHTML = "";
+            createCalendar(direction);
+        }
+
+
+
+    </script>
+</body>
+
+</html>

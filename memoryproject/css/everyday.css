@@ -1,0 +1,169 @@
+.everyday .grid-container {
+    display: grid;
+    grid-template-areas:
+        'menu main'
+        'menu main'
+        'menu main'
+        'menu foot';
+    gap: 0px;
+    padding: 0px;
+    height: 100vh;
+    grid-template-columns: 1fr 5fr;
+    grid-template-rows: 1fr 1fr 1fr auto;
+}
+
+body {
+    overflow: hidden;
+}
+
+.tablinks {
+    height: 40px;
+    flex-shrink: 10;
+    box-shadow: 5px 5px 5px black;
+    background-color: transparent;
+    filter: drop-shadow(5px 5px 1px rgba(0, 0, 0, 0.25));
+    font-size: 15px;
+    text-align: center;
+    display: block;
+    border-radius: 1px;
+    position: relative;
+}
+
+.tablinks:hover {
+    cursor: pointer;
+    background-color: rgba(66, 66, 66, 0.171);
+}
+
+
+.content {
+    display: none;
+    height: 100%;
+}
+
+/* button options */
+.notes {
+    height: 30px;
+    word-wrap: none;
+    border-radius: 0;
+
+}
+
+/* text box*/
+.note {
+    height: 30px;
+    width: 100%;
+    border-radius: 0;
+}
+
+/* wrapper */
+.inputOptions {
+    display: flex;
+    width: 100%;
+}
+
+ul {
+    word-wrap: break-word;
+    margin: 5px;
+    padding: 0;
+    list-style-type: none;
+
+}
+
+.exit {
+    text-align: right;
+}
+
+.noteList {
+
+    border-left: 2px solid red;
+    padding-left: 15px;
+}
+
+li {
+    border-bottom: 2px solid rgb(17, 0, 255);
+    padding-top: 7px;
+}
+
+/* .pageWrap {
+    height: 95%;
+} */
+
+
+
+.tab {
+    height: fit-content;
+    background-color: #ffffff;
+    display: flex;
+    flex-wrap: wrap;
+    width: fit-content;
+    align-items: center;
+}
+
+.tab button.active {
+    background-color: #9e9999;
+    z-index: 1;
+}
+
+.tabs {
+    height: 90%;
+    background-color: rgb(255, 255, 255);
+    border: 5px groove black;
+    top: 50%;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+.close {
+    cursor: pointer;
+    display: none;
+    position: absolute;
+    top: 20%;
+    right: 1%;
+    transform: translate(0%, -50%);
+}
+
+
+@media screen and (max-width: 500px) {
+    .tabs {
+        max-height: 60%;
+    }
+
+    .notes {
+        width: 33.33333333334%;
+        order: 1;
+        height: 50%;
+    }
+
+    .note {
+        width: 100%;
+        order: 4;
+        height: 50%;
+    }
+
+    .inputOptions {
+        flex-wrap: wrap;
+        height: 60px;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    /* .pageWrap {
+        height: 90%;
+    } */
+}
+
+@media screen and (max-width: 400px) {
+    .everyday .grid-container {
+        display: grid;
+        grid-template-areas:
+            'menu'
+            'main'
+            'foot';
+        gap: 5px;
+        padding: 5px;
+        height: 100vh;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr auto;
+    }
+
+}

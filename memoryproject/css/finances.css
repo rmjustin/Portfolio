@@ -1,0 +1,44 @@
+.right {
+    grid-area: right;
+}
+
+.finances .grid-container {
+    display: grid;
+    grid-template-areas:
+        'menu main right'
+        'foot foot foot';
+    gap: 0px;
+    padding: 0px;
+    height: 100vh;
+    grid-template-columns: 1fr 4fr 1fr;
+    grid-template-rows: 1fr auto;
+}
+
+.financeWrapper {
+    width: 100%;
+    border: 1px solid black;
+}
+
+.rightWrapper {
+    width: 100%;
+    border: 1px solid black;
+}
+
+@media screen and (max-width: 400px) {
+    .finances .grid-container {
+        display: grid;
+        grid-template-areas:
+            'menu menu'
+            'main main'
+            'right right'
+            'foot foot';
+        gap: 5px;
+        padding: 5px;
+        height: 100vh;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr 1fr auto;
+    }
+    .menu {
+        width: 100%;
+    }
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <title>My Memory</title>
+    <meta name="author" content="Justin Morefield">
+    <meta name="description" content="Home Page">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="./css/index.css" rel="stylesheet">
+    <link href="./css/nav.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#header').load('index.html #header');
+            $('#footer').load('index.html #footer');
+        });
+    </script>
+</head>
+
+<body style="margin:0;">
+    <div class="grid-container">
+
+
+        <div class="menu" id="header">
+
+        </div>
+
+
+        <div class="main">
+            <div class="row">
+                <div class="col-12 col-s-12" style="height:fit-content;padding:10px;">
+                    <div class="box">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="foot" id="footer">
+        </div>
+
+
+    </div>
+</body>
+
+</html>

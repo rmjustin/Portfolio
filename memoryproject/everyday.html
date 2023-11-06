@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <title>My Everyday</title>
+    <meta name="author" content="Justin Morefield">
+    <meta name="description" content="Home Page">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="./css/index.css" rel="stylesheet">
+    <link href="./css/everyday.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="components/footer.js" type="text/javascript" defer></script>
+    <script src="components/header.js" type="text/javascript" defer></script>
+    <script src="js/script.js" type="text/javascript" defer></script>
+    <script>
+    </script>
+</head>
+
+<body style="margin:0;" class="everyday">
+    <div class="grid-container">
+
+        <div class="menu" id="header">
+            <header-component></header-component>
+        </div>
+
+        <div class="main" id="everyday_main" style="margin: 5% 5% 5% 5%; overflow:hidden;">
+            <!-- Tab links -->
+
+            <div class="tab" id="tab" style="font-size:0;">
+                <button class="tablinks" id="create" onclick="createTab(event, 'create')">+</button>
+
+            </div>
+            <div class="tabs" id="tabs"></div>
+            <div></div>
+        </div>
+        <div class="foot" id="footer">
+            <footer-component></footer-component>
+        </div>
+    </div>
+    <script>
+        let tabList = [];
+        let tabStorage = [];
+        let usedNum = [];
+        let tabCount = 0;
+
+        //press enter key to enter notes
+        document.addEventListener("keyup", function (event) {
+            let string = "notes" + event.target.id[event.target.id.length - 1];
+            if (event.keyCode === 13) {
+                event.preventDefault();
+                document.getElementById(string).click();
+            }
+        });
+        //opens and loads tab 1 from previous session
+
+        window.onload = function load() {
+            let first;
+            tabList = JSON.parse(localStorage.getItem('tabs'));
+            first = Number(tabList[0].replace('Tab', ''));
+            console.log(first);
+            // console.log(tabList);
+            if (!localStorage.getItem('tabs') || tabList.length < 1) {
+                tabCount = 0;
+                document.getElementById('create').click();
+                if (localStorage.getItem('page1List')) {
+                    let child = localStorage.getItem('page1List');
+                    let parent = document.getElementById("page1List");
+                    parent.innerHTML += (child);
+                }
+            }
+            for (i = 0; i < tabList.length; i++) {
+                tabCount = Number(tabList[i].replace('Tab', '')) - 1;
+                document.getElementById('create').click();
+                console.log(tabCount);
+                if (localStorage.getItem('page' + (tabCount) + 'List')) {
+                    let child = localStorage.getItem('page' + (tabCount) + 'List');
+                    let parent = document.getElementById('page' + (tabCount) + 'List');
+                    parent.innerHTML += (child);
+                }
+            }
+            document.getElementById('Tab' + first + 'Btn').click();
+
+            tabCount = 0;
+        }
+
+        const noteBtn = document.getElementById('notes');
+        const delBtn = document.getElementById('deleteNotes');
+        let noteTxt = document.getElementById('noteText');
+
+
+        //add an li note to a page
+        function addNote(evt, noteID) {
+            let noteTxt = document.getElementById('noteText' + noteID);
+            let note = noteTxt.value;
+            let plist = 'page' + noteID + 'List';
+
+            //store note to local storage
+            if (localStorage.getItem(plist)) {
+                let toRetrieve = localStorage.getItem(plist);
+                let toSave = toRetrieve + "<li class=\"noteList\">" + note + "</li>";
+                localStorage.setItem(plist, toSave);
+            } else {
+                let toSave = "<li class=\"noteList\">" + note + "</li>";
+                localStorage.setItem(plist, toSave);
+            }
+
+            document.getElementById(plist).innerHTML += "<li class=\"noteList\">" + note + "</li>";
+            document.getElementById(plist).scrollIntoView(false);
+            document.getElementById('noteText' + noteID).value = "";
+        }
+
+
+        //delete all notes from page
+        function deletePage(evt, noteID) {
+            let pageNode = document.getElementById('page' + noteID + 'List');
+            while (pageNode.firstChild) {
+                pageNode.removeChild(pageNode.lastChild);
+            }
+            localStorage.removeItem('page' + noteID + 'List');
+        }
+
+        function deleteTab(evt, tabID) {
+            let parent = document.getElementById('Tab' + tabID);
+            let parentBtn = document.getElementById("Tab" + tabID + "Btn");
+            let num = parentBtn.parentNode.childElementCount;
+            if (num == 2) {
+                return;
+            }
+            else if (parentBtn.nextElementSibling) {
+                parentBtn.nextElementSibling.click();
+            } else if (parentBtn.previousElementSibling) {
+                parentBtn.previousElementSibling.click();
+            }
+
+            // for(j = 0; j < usedNum.length; j++) {
+            //     if(tabID === usedNum[j]) {
+            //         usedNum.splice[j, 1];
+            //     }
+            //     if(tabCount != usedNum[i]) {
+            //         tabCount--;
+            //     }
+            // }
+            //Local storage removal
+            tabStorage = JSON.parse(localStorage.getItem('tabs'));
+            for (i = 0; i < tabStorage.length; i++) {
+                if (tabStorage[i] === ('Tab' + tabID)) {
+                    tabStorage.splice(i, 1);
+
+                }
+            }
+            localStorage.setItem('tabs', JSON.stringify(tabStorage));
+            localStorage.removeItem('page' + tabID + 'List');
+            parent.parentNode.removeChild(parent);
+            parentBtn.parentNode.removeChild(parentBtn);
+
+        }
+
+        //create overhead tab
+        function createTab(evt, tabName) {
+            tabCount++;
+            for (k = 0; k < usedNum.length; k++) {
+                if (tabCount === usedNum[k]) {
+                    tabCount++;
+                }
+            }
+
+            console.log(tabCount);
+            let newTab = 'Tab' + tabCount;
+            let p = document.createElement("button");
+
+            usedNum.push(tabCount);
+            tabStorage.push(newTab);
+            localStorage.setItem('tabs', JSON.stringify(tabStorage));
+
+
+            p.setAttribute('class', 'tablinks btn');
+            p.setAttribute('id', 'Tab' + tabCount + 'Btn');
+            p.setAttribute('onclick', 'openItem(event, ' + "'" + newTab + "'" + ')');
+            p.innerHTML = p.innerHTML.replace('', newTab);
+            document.getElementById("tab").appendChild(p);
+            addToTab(evt, newTab);
+        }
+
+
+        //add add/delete/text inputs to page
+        function addToTab(evt, tabName) {
+            let div = document.createElement("div");
+            div.setAttribute('id', tabName);
+            div.setAttribute('class', 'content');
+
+            let head = '<div class="inputOptions"><button class="notes" id="notes' + tabCount + '" onclick="addNote(event, ' + tabCount + ')">Add&nbsp;Notes</button><button class="notes" id="deleteNotes' + tabCount + '" onclick="deletePage(event, ' + tabCount + ')">Delete&nbsp;Page</button><input type="text" name="note" class="note" id="noteText' + tabCount + '" placeholder="Enter Notes.."/>'
+            let del = '<button class="notes" id="deletePage' + tabCount + '" onclick="deleteTab(event, ' + tabCount + ')">Delete&nbsp;Tab</button></div>'
+            let page = '<div class="page" id="page' + tabCount + '"><ul class="pageList" id="page' + tabCount + 'List"></ul></div>'
+            head += del + page;
+
+            const parser = new DOMParser();
+            const html = parser.parseFromString(head, 'text/html');
+            div.appendChild(html.body.children[0]);
+            div.appendChild(html.body.children[0]);
+            document.getElementById("tabs").appendChild(div);
+            document.getElementById('Tab' + tabCount + 'Btn').click();
+        }
+
+
+
+        //swap to new tab on click. change highlight
+        function openItem(evt, tabName) {
+            let content, tablinks, i;
+            content = document.getElementsByClassName("content");
+            for (i = 0; i < content.length; i++) {
+                content[i].style.display = "none";
+            }
+
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace("active", "");
+            }
+            let ele = document.getElementById(tabName + "Btn");
+            ele.removeAttribute("class");
+            ele.setAttribute("class", "tablinks btn active");
+            document.getElementById(tabName).style.display = "block";
+        }
+    </script>
+</body>
+
+</html>
