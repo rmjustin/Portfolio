@@ -2,6 +2,7 @@
 const object = {
     color: ['red', 'blue', 'green', 'purple'],
     colorCounter: 0,
+    year: 0,
     children: [],
     available: [],
     inUse: []
@@ -20,7 +21,11 @@ let months = ['January', 'February', 'March', 'April', 'May', 'June',
 window.onload = function load() {
     createCalendar(direction);
     currentDay();
+    object.children.length = 0;
+    loadLocal();
 }
+
+
 
 
 
@@ -41,7 +46,7 @@ function currentDay() {
 
 function schedule(option, id, year) {
     let change = document.getElementById('scheduler');
-    let tempID = id;
+    let tempID = id + year;
     change.setAttribute('name', tempID);
     id = id.toString().replace('_', ' ').split(' ').reverse().join(' ');
     document.getElementById("scheduledDay").innerHTML = id.replace('_', ' ') + ' ' + year;
@@ -67,7 +72,7 @@ function checkDupe(symbol, name) {
     const myEle = document.getElementById(symbol);
     for (const child of myEle.children) {
         if (name == child.getAttribute('name')) {
-            for (i = 1; i < 5; i++) {
+            for (let i = 1; i < 5; i++) {
                 if (i != child.getAttribute('name')[child.getAttribute('name').length - 1]) {
                     name = symbol + i;
                     return name;
@@ -79,7 +84,15 @@ function checkDupe(symbol, name) {
 
 //saving note to events
 function saving() {
+    let kl = object.year;
     let symbol = document.getElementById('scheduler').getAttribute('name');
+    object.year = symbol.substring(symbol.indexOf('_') + 3);
+    let usedYear;
+    if (kl != object.year) {
+        usedYear = kl;
+    } else usedYear = object.year;
+    symbol = symbol.substring(0, symbol.indexOf('_') + 3);
+
     if (document.getElementById(symbol).childElementCount == 1) {
         object.colorCounter = 0;
     } else {
@@ -91,14 +104,10 @@ function saving() {
     //initialize
     let event = document.getElementById('eventName');
     let start = document.getElementById('startTime');
-    let timeOfDay = 'All day';
+    let timeOfDay = document.getElementById('category').value;
     let description = document.getElementById('description');
-    //don't include AM/PM if no time given
-    if (startTime.value !== '') {
-        timeOfDay = document.getElementById('category').value;
-    }
+
     if (event.value === "") {
-        console.log('event');
         event.setAttribute('class', 'schedule alert');
         event.setAttribute('placeholder', 'Please name your event.');
         return;
@@ -111,22 +120,20 @@ function saving() {
     if (document.getElementById(symbol).childElementCount >= 2) {
         name = checkDupe(symbol, name);
     }
-
-
     //create calendar marker
     let note = createMarker(symbol, name);
 
-
     //format saved information
     let toStore = '<span class="memo ' + object.color[0] + '">'
-        + symbol.replace('_', ' ') + '</span>'
-        + '<span class=deleter onclick=deleting(this) name = ' + name + '>' + 'X' + '</span>' + '<h3> ' + event.value + "</h3><p> " + start.value
-        + ' ' + timeOfDay + "</p><p> " + description.value + '<p>';
+        + symbol.replace('_', ' ') + ' ' + usedYear + '</span>'
+        + '<span class=deleter onclick=deleting(this) name = ' + name + '>' + 'X' + '</span>' + '<h3 id= ' + name + '>' + event.value + "</h3><p id='time'>" + start.value
+        + ' ' + timeOfDay + "</p><p id='description'>" + description.value + '<p>';
     object.color.push(object.color.splice(0, 1)[0]);
     let things = document.createElement('div');
     things.setAttribute('class', 'event');
     things.setAttribute('id', name);
     things.setAttribute('name', name);
+    things.setAttribute('value', usedYear);
     let div = document.createElement('div');
     things.innerHTML = toStore;
 
@@ -135,19 +142,31 @@ function saving() {
     div.appendChild(things);
     object.children.push(div.innerHTML);
     let temp = object.children[object.children.length - 1].substring(23, object.children[object.children.length - 1].indexOf('_'));
-    console.log(temp);
     object.available.push(months.indexOf(temp));
     object.children.sort();
 
     object.available.sort(function (a, b) { return a - b; });
     object.inUse = [...object.children];
+    sorting();
+
+    //reset
+    event.value = '';
+    startTime.value = '';
+    description.value = '';
+    schedule('close', '1', 0);
+    saveLocal();
+}
+//sort eventList by month then day
+function sorting() {
     let reSort = [];
     let reNum = [...object.available];
+
     //sort by month
     for (let k = 0; k < reNum.length; k++) {
         for (let j = 0; j < object.inUse.length; j++) {
             let test = object.inUse[j].split('_');
             test = test[0].substring(23);
+
             if (test == months[reNum[k]]) {
                 reSort.push(object.inUse.splice(j, 1)[0]);
             }
@@ -163,17 +182,16 @@ function saving() {
             let r = reSort[i + 1].indexOf('_');
             let comp = reSort[i + 1];
             comp = comp.substring(23, r + 3);
-            if(test.substring(0, test.indexOf('_')) == comp.substring(0, comp.indexOf('_'))) {
-            if (test > comp) {
-                let temp = reSort[i];
-                reSort[i] = reSort[i + 1];
-                reSort[i + 1] = temp;
-                swapped = true;
-            }
+            if (test.substring(0, test.indexOf('_')) == comp.substring(0, comp.indexOf('_'))) {
+                if (test > comp) {
+                    let temp = reSort[i];
+                    reSort[i] = reSort[i + 1];
+                    reSort[i + 1] = temp;
+                    swapped = true;
+                }
             } else continue;
         }
     } while (swapped);
-
 
     document.getElementById('events').innerHTML = '';
 
@@ -184,11 +202,12 @@ function saving() {
         document.getElementById('events').appendChild(sorted);
     }
 
-    //reset
-    event.value = '';
-    startTime.value = '';
-    description.value = '';
-    schedule('close', '1', 0);
+}
+
+function saveLocal() {
+    let list = document.getElementById("events").innerHTML;
+    if (list == "<div></div>") list = '';
+    localStorage.setItem('eventList', list);
 }
 
 
@@ -216,6 +235,7 @@ function deleting(name) {
         }
         input.remove();
     }
+    saveLocal();
 }
 
 //Calc # days in month
@@ -261,6 +281,7 @@ function createCalendar(direction) {
 
 function addDaysToHTML(days, startDay, endDay, prevMonth, nextMonth, year) {
     let id;
+    object.year = year;
     if (startDay != 0) {//not a sunday
         let prevLastDay = daysInMonth(year, prevMonth + 1);
 
@@ -274,7 +295,6 @@ function addDaysToHTML(days, startDay, endDay, prevMonth, nextMonth, year) {
     }
     for (let i = 0; i < days; i++) {
         let dayNum;
-
         if (i < 9) {
             id = namedMonth + '_0' + (i + 1);
             dayNum = "<li id='" + id + "' onclick=schedule('open',this.id," +
@@ -332,3 +352,81 @@ function loadMarkers() {
         document.getElementById(symbol).appendChild(note);
     }
 }
+
+function moveToLoadCalendar(diff, offset) {
+    let count = 0;
+    while (diff != offset) {
+        if (offset < diff) {
+            backward();
+            offset++;
+            count--;
+        } else {
+            forward();
+            offset--;
+            count++;
+        }
+    }
+    return count;
+}
+
+function resetCountAndCalendar(count) {
+    while (count != 0) {
+        if (count < 0) {
+            count++;
+            forward();
+        } else {
+            count--;
+            backward();
+        }
+    }
+}
+
+function loadLocal() {
+    if (!localStorage.getItem('eventList')) return;
+    let loading = document.getElementById('events');
+    let stuff = (localStorage.getItem('eventList')).split("</div></div>");
+    //remove junk elements and fixes above split
+    for (let i = 0; i < stuff.length; i++) {
+        while (stuff[i].includes('<div></div>')) {
+            stuff[i] = stuff[i].replace('<div></div>', '');
+        }
+        stuff[i] += "</div></div>";
+        if (stuff[i] == "</div></div>") stuff.splice(i, 1);
+    }
+    let temp = stuff;
+    let count = 0;
+    object.children = [];
+    for (let i = 0; i < temp.length; i++) {
+        //create offset for calendar to go to a different month and create markers/events
+        let diff = currMonth;
+        let offset = months.indexOf(temp[i].substring(28, temp[i].indexOf("_")));
+        count = moveToLoadCalendar(diff, offset);
+
+        let day = document.getElementById(temp[i].substring(28, temp[i].indexOf("_") + 3));
+        if (day == 'null') {
+            return;
+        }
+        let rearrange = temp[i].split(' ');
+        object.year = (rearrange[4].substring(7, 11));
+        loading.innerHTML += temp[i];
+        //create fake event for marker+event list
+        day.click();
+        let ele = document.getElementById(temp[i].substring(28, temp[i].indexOf("_") + 4));
+        let eventName = ele.querySelector("#" + temp[i].substring(28, temp[i].indexOf("_") + 4)).innerHTML;
+        let eventTime = ele.querySelector("#time").innerHTML;
+        let description = ele.querySelector("#description").innerHTML;
+        let scheduler = document.getElementById('scheduler');
+        scheduler.querySelector('#eventName').value = eventName;
+        if (eventTime == '   All day') {
+            scheduler.querySelector('#startTime').value = '';
+        } else {
+            scheduler.querySelector('#startTime').value = eventTime.split(' ')[0];
+        }
+        scheduler.querySelector('#description').value = description;
+        document.getElementById('saveMe').click();  //saves schedule card
+
+        //return calendar to starting month
+        resetCountAndCalendar(count);
+    }
+}
+
