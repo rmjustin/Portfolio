@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Mass Effect</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/masseffect.css">
+    <script src="components/footer.js" type="text/javascript" defer></script>
+    <script src="components/header.js" type="text/javascript" defer></script>
+    <style>
+        a.link{
+            color: var(--blue);
+            border-bottom: 2px solid var(--blue);
+                box-shadow: 1px 2px 3px var(--blue);
+        }
+        a.home-link {
+            color: var(--blue);
+        }
+        a:hover {
+            background-color: var(--blue);
+            color: #1c1d1f;
+        }
+        h1.title {
+            border-color: var(--blue);
+        }
+        div.menu {
+            border-color: var(--navyblue);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="grid">
+        <div class="menu" id="header">
+            <header-component></header-component>
+        </div>
+
+        <div class="main">
+            <nav class="pageNav" aria-label="pageNav">
+                <a href="#me1" class="pageJump">Mass Effect 1</a>
+                <a href="#me2" class="pageJump">Mass Effect 2</a>
+                <a href="#me3" class="pageJump">Mass Effect 3</a>
+            </nav>
+
+            <div class="up">
+                <a href="#header">&uarr;</a>
+            </div>
+
+            <div class="me1" id="me1">
+                <div class="wrapper">
+                    <h1 class="head me1-head">Mass Effect 1</h1>
+                    <hr>
+                    <ul>
+                        <li>
+                            <label for="parent" class="check parent">
+                                <input type='checkbox' id="parent">
+                                <span class="checkmark"></span>
+                                Parent</label>
+                            <ul>
+                                <li>
+                                    <label for="Child1" class="check child">
+                                        <input type="checkbox" id="Child1" class="children">
+                                        <span class="checkmark"></span>
+                                        Child1</label>
+                                </li>
+                                <li>
+                                    <label for="Child2" class="check child">
+                                        <input type="checkbox" id="Child2" class="children">
+                                        <span class="checkmark"></span>
+                                        Child2</label>
+                                </li>
+                                <li>
+
+                                    <label for="Child3" class="check child">
+                                        <input type="checkbox" id="Child3" class="children">
+                                        <span class="checkmark"></span>
+                                        Child3</label>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="me2" id="me2">
+                <div class="wrapper">
+                    <h1 class="head">Mass Effect 2</h1>
+                    <hr>
+                    <div class="act">
+                        <h3>Act 1</h3>
+                    </div>
+                    <ul>
+                        <li>
+                            <label for="parent" class="check parent">
+                                <input type='checkbox' id="parent">
+                                <span class="checkmark"></span>
+                                Parent</label>
+                            <ul>
+                                <li>
+                                    <label for="Child1" class="check child">
+                                        <input type="checkbox" id="Child1" class="children">
+                                        <span class="checkmark"></span>
+                                        Child1</label>
+                                </li>
+                                <li>
+                                    <label for="Child2" class="check child">
+                                        <input type="checkbox" id="Child2" class="children">
+                                        <span class="checkmark"></span>
+                                        Child2</label>
+                                </li>
+                                <li>
+
+                                    <label for="Child3" class="check child">
+                                        <input type="checkbox" id="Child3" class="children">
+                                        <span class="checkmark"></span>
+                                        Child3</label>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="act">
+                        <h3>Act 2</h3>
+                    </div>
+                    <ul>
+                        <li>
+                            <label for="parent" class="check parent">
+                                <input type='checkbox' id="parent">
+                                <span class="checkmark"></span>
+                                Parent</label>
+                            <ul>
+                                <li>
+                                    <label for="Child1" class="check child">
+                                        <input type="checkbox" id="Child1" class="children">
+                                        <span class="checkmark"></span>
+                                        Child1</label>
+                                </li>
+                                <li>
+                                    <label for="Child2" class="check child">
+                                        <input type="checkbox" id="Child2" class="children">
+                                        <span class="checkmark"></span>
+                                        Child2</label>
+                                </li>
+                                <li>
+
+                                    <label for="Child3" class="check child">
+                                        <input type="checkbox" id="Child3" class="children">
+                                        <span class="checkmark"></span>
+                                        Child3</label>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="act">
+                        <h3>Act 3</h3>
+                    </div>
+                    <ul>
+                        <li>
+                            <label for="parent" class="check parent">
+                                <input type='checkbox' id="parent">
+                                <span class="checkmark"></span>
+                                Parent</label>
+                            <ul>
+                                <li>
+                                    <label for="Child1" class="check child">
+                                        <input type="checkbox" id="Child1" class="children">
+                                        <span class="checkmark"></span>
+                                        Child1</label>
+                                </li>
+                                <li>
+                                    <label for="Child2" class="check child">
+                                        <input type="checkbox" id="Child2" class="children">
+                                        <span class="checkmark"></span>
+                                        Child2</label>
+                                </li>
+                                <li>
+
+                                    <label for="Child3" class="check child">
+                                        <input type="checkbox" id="Child3" class="children">
+                                        <span class="checkmark"></span>
+                                        Child3</label>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="act">
+                        <h3>Suicide Mission and post-game</h3>
+                    </div>
+                    <ul>
+                        <li>
+                            <label for="parent" class="check parent">
+                                <input type='checkbox' id="parent">
+                                <span class="checkmark"></span>
+                                Parent</label>
+                            <ul>
+                                <li>
+                                    <label for="Child1" class="check child">
+                                        <input type="checkbox" id="Child1" class="children">
+                                        <span class="checkmark"></span>
+                                        Child1</label>
+                                </li>
+                                <li>
+                                    <label for="Child2" class="check child">
+                                        <input type="checkbox" id="Child2" class="children">
+                                        <span class="checkmark"></span>
+                                        Child2</label>
+                                </li>
+                                <li>
+
+                                    <label for="Child3" class="check child">
+                                        <input type="checkbox" id="Child3" class="children">
+                                        <span class="checkmark"></span>
+                                        Child3</label>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="me3" id="me3">
+                <div class="wrapper">
+                    <h1 class="head">Mass Effect 3</h1>
+                    <hr>
+                    <ul>
+                        <li>
+                            <label for="parent" class="check parent">
+                                <input type='checkbox' id="parent">
+                                <span class="checkmark"></span>
+                                Parent</label>
+                            <ul>
+                                <li>
+                                    <label for="Child1" class="check child">
+                                        <input type="checkbox" id="Child1" class="children">
+                                        <span class="checkmark"></span>
+                                        Child1</label>
+                                </li>
+                                <li>
+                                    <label for="Child2" class="check child">
+                                        <input type="checkbox" id="Child2" class="children">
+                                        <span class="checkmark"></span>
+                                        Child2</label>
+                                </li>
+                                <li>
+
+                                    <label for="Child3" class="check child">
+                                        <input type="checkbox" id="Child3" class="children">
+                                        <span class="checkmark"></span>
+                                        Child3</label>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="hold"></div>
+        <div class="foot" id="footer">
+            <footer-component></footer-component>
+        </div> -->
+    </div>
+
+
+    <script type="text/javascript" src="./js/masseffect.js"></script>
+</body>
+
+</html>

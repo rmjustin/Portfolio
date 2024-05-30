@@ -1,0 +1,29 @@
+a {
+    text-decoration: none;
+    color: white;
+    display: block;
+    text-align: center;
+    font-size: 24px;
+    margin: 5px;
+    padding: 5px;
+    border-bottom: 2px solid white;
+    box-shadow: 1px 2px 3px white;
+}
+
+
+.navbar {
+}
+
+.title {
+    color: white;
+    display: block;
+    text-align: center;
+    outline: 5px solid black;
+    margin: 5px 0 10px 0;
+}
+
+.menu {
+    grid-area: menu;
+    border: 2px solid black;
+    height: 100%;
+}

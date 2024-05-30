@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="author" content="">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <pre><code>
+    const character = "#";
+    const count = 8;
+    const rows = [];
+    let inverted = true;
+
+    function padRow(rowNumber, rowCount) {
+      return " ".repeat(rowCount - rowNumber) + character.repeat(2 * rowNumber - 1) + " ".repeat(rowCount - rowNumber);
+    }
+
+    for (let i = 1; i <= count; i++) {
+      if (inverted) {
+        rows.unshift(padRow(i, count));
+      } else {
+        rows.push(padRow(i, count));
+      }
+    }
+
+    let result = ""
+
+    for (const row of rows) {
+      result = result + "\n" + row;
+    }
+
+    console.log(result);
+  </code></pre>
+  <hr>
+
+  <div class="result"></div>
+
+
+  <script>
+    const character = "#";
+    const count = 8;
+    const rows = [];
+    const toPrint = document.querySelector(".result");
+    let inverted = true;
+
+    function padRow(rowNumber, rowCount) {
+      return " ".repeat(rowCount - rowNumber) + character.repeat(2 * rowNumber - 1) + " ".repeat(rowCount - rowNumber);
+    }
+
+    for (let i = 1; i <= count; i++) {
+      if (inverted) {
+        rows.unshift(padRow(i, count));
+      } else {
+        rows.push(padRow(i, count));
+      }
+    }
+
+    let result = "";
+    let rowLength = rows.length;
+    let rowNum = 0;
+    console.log(rowLength);
+
+    for (const row of rows) {
+      result = result + "\n" + row;
+      const printSpace = (rowLength) => {
+        let space = "";
+        for (let i = 0; i < rowNum; i++) {
+          space += "&nbsp;";
+        }
+        return space;
+      };
+      toPrint.innerHTML += printSpace(rowLength) + row + "<br>";
+      rowNum++;
+    }
+
+    console.log(result);
+    </script>
+</body>
+
+</html>

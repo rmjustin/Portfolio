@@ -1,0 +1,43 @@
+html {
+    box-sizing: border-box;
+    background-color: #1c1d1f;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+ul, li {
+    list-style: none;
+}
+
+li {
+    padding: 5px;
+}
+
+label {
+    color: #58B296;
+}
+
+input[type=checkbox] {
+    transform: scale(1);
+    outline: 3px solid black;
+}
+
+.wrapper {
+    border-bottom: 5px solid #58B296;
+}
+
+.check input:hover {
+    cursor: pointer;
+    background-color: #000;
+}
+
+.child{
+    font-size: 18px;
+}
+
+.parent{
+    font-size: 24px;
+    font-weight: bolder;
+}
+
+
+

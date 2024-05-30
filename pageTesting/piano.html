@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Piano</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/piano.css">
+</head>
+
+<body>
+    <main id="keyboard">
+        <div class="settings">
+            <div id="logoBox"><span id="logo">LOGO</span></div>
+
+            <div class="volume">
+                <span id="volume-text">&#x1F50A;</span>
+                <input id="volume-control" type="range" min="0" max="100" value="100">
+
+            </div>
+            <div class="box">
+                <div class="speaker left">
+
+                </div>
+                <div class="speaker right">
+
+                </div>
+            </div>
+        </div>
+
+        <div class="notes">
+            <span class="note">-C-</span>
+            <span class="note">D</span>
+            <span class="note">E</span>
+            <span class="note">F</span>
+            <span class="note">G</span>
+            <span class="note">A</span>
+            <span class="note">B</span>
+            <span class="note">-C-</span>
+            <span class="note">D</span>
+            <span class="note">E</span>
+            <span class="note">F</span>
+            <span class="note">G</span>
+            <span class="note">A</span>
+            <span class="note">B</span>
+            <span class="note">-C-</span>
+            <span class="note">D</span>
+            <span class="note">E</span>
+            <span class="note">F</span>
+            <span class="note">G</span>
+            <span class="note">A</span>
+            <span class="note">B</span>
+        </div>
+
+        <div class="keys">
+            <div class="key" id="z" name="C1">
+                <div class="keyPressed">z</div>
+            </div>
+            <div class="key black" data-key="1" id="q" name="Db1">
+                <div class="keyPressed blackNote">q</div><span class='blackNote'>C# Db</span>
+            </div>
+            <div class="key" id="x" name="D1">
+                <div class="keyPressed">x</div>
+            </div>
+            <div class="key black" data-key="2"" id=" w" name="Eb1">
+                <div class="keyPressed blackNote">w</div><span class='blackNote'>D# Eb</span>
+            </div>
+            <div class="key" id="c" name="E1">
+                <div class="keyPressed">c</div>
+            </div>
+
+            <div class="key" id="v" name="F1">
+                <div class="keyPressed">v</div>
+            </div>
+            <div class="key black" data-key="3" id="e" name="Gb1">
+                <div class="keyPressed blackNote">e</div><span class='blackNote'>F# Gb</span>
+            </div>
+            <div class="key" id="b" name="G1">
+                <div class="keyPressed">b</div>
+            </div>
+            <div class="key black" data-key="4" id="r" name="Ab1">
+                <div class="keyPressed blackNote">r</div><span class='blackNote'>G# Ab</span>
+            </div>
+            <div class="key" id="n" name="A1">
+                <div class="keyPressed">n</div>
+            </div>
+            <div class="key black" data-key="5" id="t" name="Bb1">
+                <div class="keyPressed blackNote">t</div><span class='blackNote'>A# Bb</span>
+            </div>
+            <div class="key" id="m" name="B1">
+                <div class="keyPressed">m</div>
+            </div>
+
+            <div class="key" id="," name="C2">
+                <div class="keyPressed">,</div>
+            </div>
+            <div class="key black" data-key="6" id="y" name="Db2">
+                <div class="keyPressed blackNote">y</div>
+            </div>
+            <div class="key" id="." name="D2">
+                <div class="keyPressed">.</div>
+            </div>
+            <div class="key black" data-key="7" id="u" name="Eb2">
+                <div class="keyPressed blackNote">u</div>
+            </div>
+            <div class="key" id="/" name="E2">
+                <div class="keyPressed">/</div>
+            </div>
+
+            <div class="key" id="a" name="F2">
+                <div class="keyPressed">a</div>
+            </div>
+            <div class="key black" data-key="8" id="i" name="Gb2">
+                <div class="keyPressed blackNote">i</div>
+            </div>
+            <div class="key" id="s" name="G2">
+                <div class="keyPressed">s</div>
+            </div>
+            <div class="key black" data-key="9" id="o" name="Ab2">
+                <div class="keyPressed blackNote">o</div>
+            </div>
+            <div class="key" id="d" name="A2">
+                <div class="keyPressed">d</div>
+            </div>
+            <div class="key black" data-key="10" id="p" name="Bb2">
+                <div class="keyPressed blackNote">p</div>
+            </div>
+            <div class="key" id="f" name="B2">
+                <div class="keyPressed">f</div>
+            </div>
+
+            <div class="key" id="g" name="C3">
+                <div class="keyPressed">g</div>
+            </div>
+            <div class="key black" data-key="11" id="[" name="Db3">
+                <div class="keyPressed blackNote">[</div>
+            </div>
+            <div class="key" id="h" name="D3">
+                <div class="keyPressed">h</div>
+            </div>
+            <div class="key black" data-key="12" id="]" name="Eb3">
+                <div class="keyPressed blackNote">]</div>
+            </div>
+            <div class="key" id="j" name="E3">
+                <div class="keyPressed">j</div>
+            </div>
+
+            <div class="key" id="k" name="F3">
+                <div class="keyPressed">k</div>
+            </div>
+            <div class="key black" data-key="13" id="1" name="Gb3">
+                <div class="keyPressed blackNote">1</div>
+            </div>
+            <div class="key" id="l" name="G3">
+                <div class="keyPressed">l</div>
+            </div>
+            <div class="key black" data-key="14" id="2" name="Ab3">
+                <div class="keyPressed blackNote">2</div>
+            </div>
+            <div class="key" id=";" name="A3">
+                <div class="keyPressed">;</div>
+            </div>
+            <div class="key black" data-key="15" id="3" name="Bb3">
+                <div class="keyPressed blackNote">3</div>
+            </div>
+            <div class="key" id="'" name="B3">
+                <div class="keyPressed">'</div>
+            </div>
+        </div>
+    </main>
+    <script type="text/javascript" src="./js/piano.js"></script>
+</body>
+
+</html>

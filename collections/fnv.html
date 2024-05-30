@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Fallout</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/fnv.css">
+    <script src="components/footer.js" type="text/javascript" defer></script>
+    <script src="components/header.js" type="text/javascript" defer></script>
+    <style>
+        a.link {
+            color: var(--green);
+            border-bottom: 2px solid var(--green);
+            box-shadow: 1px 2px 3px var(--green);
+        }
+
+        a.home-link {
+            color: var(--green);
+        }
+
+        a:hover {
+            background-color: var(--green);
+            color: #1c1d1f;
+        }
+
+        h1.title {
+            /* border-color: #2e3033; */
+            border-color: var(--green);
+        }
+
+        div.menu {
+            /* border-color: #2e3033; */
+            border-color: #2e3033;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="grid">
+        <div class="menu" id="header">
+            <header-component></header-component>
+        </div>
+
+        <div class="main">
+            <nav class="pageNav" aria-label="pageNav">
+                <a href="#skill_books" class="pageJump">Skill Books</a>
+                <a href="#companions" class="pageJump">Companions</a>
+                <a href="#snow_globes" class="pageJump">Snow Globes</a>
+            </nav>
+            <div class="expand">Magazines
+                <nav class="jump" aria-label="jump">
+                    <a href="#science" class="magJump">Big Book of Science</a>
+                    <a href="#sneak" class="magJump">Chinese Army: Special Ops Training Manual</a>
+                    <a href="#medicine" class="magJump">D.C. Journal of Internal Medicine</a>
+                    <a href="#repair" class="magJump">Dean's Electronics</a>
+                    <a href="#explosives" class="magJump">Duck and Cover</a>
+                    <a href="#melee" class="magJump">Grognak the Barbarian</a>
+                    <a href="#guns" class="magJump">Guns and Bullets</a>
+                    <a href="#speech" class="magJump">Lying, Congressional Style</a>
+                    <a href="#energy" class="magJump">Nikola Tesla and You</a>
+                    <a href="#unarmed" class="magJump">Pugilism Illustrated</a>
+                    <a href="#barter" class="magJump">Tales of a Junktown Jerky Vendor</a>
+                    <a href="#lockpick" class="magJump">Tumblers Today</a>
+                    <a href="#survival" class="magJump">Wasteland Survival Guide</a>
+                </nav>
+            </div>
+            <div class="up">
+                <a href="#header">&uarr;</a>
+            </div>
+
+            <div id="skill_books">
+
+
+                <div class="wrapper">
+                    <ul>
+                        <li>
+                            <label for="Big_Book_of_Science" class="check parent">
+                                <input type='checkbox' id="science" class="heading" onclick="handleClick(this)">
+                                Big Book of Science</label>
+                            <ul>
+                                <li>
+                                    <label for="science1" class="check child">
+                                        <input type="checkbox" id="science1" class="scienceChildren">
+
+                                        Ashton Missile Silo (Lonesome Road)</label>
+                                    <p>In the north corner of launch deck, level 3 of the silo wreckage just past a Hard
+                                        locked safe</p>
+                                </li>
+                                <li>
+                                    <label for="science2" class="check child">
+                                        <input type="checkbox" id="science2" class="scienceChildren">
+
+                                        Brewer's Beer Bootlegging</label>
+                                    <p>In the cellar, in the back room on a table to the left of the chemistry set</p>
+                                </li>
+                                <li>
+                                    <label for="science3" class="check child">
+                                        <input type="checkbox" id="science3" class="scienceChildren">
+
+                                        Camp Forlorn Hope</label>
+                                    <p>In the command center, in the southeast corner, on the desk</p>
+                                </li>
+                                <li>
+                                    <label for="science4" class="check child">
+                                        <input type="checkbox" id="science4" class="scienceChildren">
+
+                                        Helios One (Conversation)</label>
+                                    <p>Reward from Ignacio Rivas for distributing power to entire grid during That Lucky
+                                        Old Sun</p>
+                                </li>
+                                <li>
+                                    <label for="science5" class="check child">
+                                        <input type="checkbox" id="science5" class="scienceChildren">
+
+                                        Nipton</label>
+                                    <p>On the desk in Mayor Joseph B. Steyn's office on the top floor of the Nipton Town
+                                        Hall building</p>
+                                </li>
+                                <li>
+                                    <label for="science6" class="check child">
+                                        <input type="checkbox" id="science6" class="scienceChildren">
+
+                                        REPCONN headquarters</label>
+                                    <p>Located on the first floor through the door next to the radioactive barrel
+                                        display, located on a shelf past the Hard locked door</p>
+                                </li>
+                                <li>
+                                    <label for="science7" class="check child">
+                                        <input type="checkbox" id="science7" class="scienceChildren">
+
+                                        Sierra Madre Casino (Dead Money)</label>
+                                    <p>On a bookshelf in Vera's room, which is found in the Executive suites area of the
+                                        Sierra Madre casino</p>
+                                </li>
+                                <li>
+                                    <label for="science8" class="check child">
+                                        <input type="checkbox" id="science8" class="scienceChildren">
+
+                                        Y-0 Research Center (OWB)</label>
+                                    <p>In a corner of the canyon south of the Y-0 building, between two xander root
+                                        plants by the hand of a skeleton</p>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <label for="Chinese_Army:Special_Ops_Training_Manual" class="check parent">
+                                <input type='checkbox' id="sneak" class="heading">
+                                Chinese Army: Special Ops Training Manual</label>
+                            <ul>
+                                <li>
+                                    <label for="Child1" class="check child">
+                                        <input type="checkbox" id="Child1" class="sneakChildren">
+
+                                        Camp Searchlight</label>
+                                    <p>In the east church's basement, by the eastern wall, at the foot of the metal
+                                        shelves, on the floor.</p>
+                                </li>
+                                <li>
+                                    <label for="Child2" class="check child">
+                                        <input type="checkbox" id="Child2" class="sneakChildren">
+
+                                        Goodsprings</label>
+                                    <p> In the Goodsprings home inhabited by Trudy and Sunny Smiles, east from the
+                                        schoolhouse, on a bookshelf</p>
+                                </li>
+                                <li>
+                                    <label for="Child3" class="check child">
+                                        <input type="checkbox" id="Child3" class="sneakChildren">
+
+                                        NCR sharecropper farms</label>
+                                    <p> On some papers, by the corner desk inside the sharecropper barracks near the
+                                        four water towers in the northeast corner of the fenced-in area</p>
+                                </li>
+                                <li>
+                                    <label for="Child1" class="check child">
+                                        <input type="checkbox" id="Child1" class="sneakChildren">
+
+                                        Puesta del Sol switching station (Dead Money)</label>
+                                    <p>In the easternmost room of the switching station there is a large machine on the
+                                        south side of the room, located on the catwalk that runs around the machine</p>
+                                </li>
+                                <li>
+                                    <label for="Child2" class="check child">
+                                        <input type="checkbox" id="Child2" class="sneakChildren">
+
+                                        Sunstone Tower roof (Lonesome Road)</label>
+                                    <p>On a bookshelf facing the wall (hidden from view) on the southeast landing up one
+                                        flight of stairs from the first floor interior entrance, acquired by
+                                        placing/throwing explosives onto the bookshelf underneath the filing cabinet</p>
+                                </li>
+                                <li>
+                                    <label for="Child3" class="check child">
+                                        <input type="checkbox" id="Child3" class="sneakChildren">
+
+                                        Vault 3</label>
+                                    <p> In the living quarters on a shelf, down the stairs from the recreation area
+                                        through an Average locked door</p>
+                                </li>
+                                <li>
+                                    <label for="Child1" class="check child">
+                                        <input type="checkbox" id="Child1" class="sneakChildren">
+
+                                        X-13 research facility (OWB)</label>
+                                    <p>On the floor, opposite the door in the room where the chest plate for the stealth
+                                        suit Mk II is found</p>
+                                </li>
+                                <li>
+                                    <label for="Child2" class="check child">
+                                        <input type="checkbox" id="Child2" class="sneakChildren">
+
+                                        X-13 research facility (OWB)</label>
+                                    <p>In the testing facility section, in the reward safe upon completion of all the
+                                        stealth suit tests</p>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <ul>
+                        <li>
+                            <label for="medicine" class="check parent">
+                                <input type='checkbox' id="medicine" class="heading">
+                                D.C. Journal of Internal Medicine</label>
+                            <ul>
+                                <li>
+                                    <label for="Child1" class="check child">
+                                        <input type="checkbox" id="Child1" class="Children">
+
+                                        Child1</label>
+                                    <p></p>
+                                </li>
+                                <li>
+                                    <label for="Child2" class="check child">
+                                        <input type="checkbox" id="Child2" class="Children">
+
+                                        Child2</label>
+                                    <p></p>
+                                </li>
+                                <li>
+                                    <label for="Child3" class="check child">
+                                        <input type="checkbox" id="Child3" class="Children">
+
+                                        Child3</label>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <ul>
+                        <li>
+                            <label for="repair" class="check parent">
+                                <input type='checkbox' id="repair" class="heading">
+                                Dean's Electronics</label>
+                            <ul>
+                                <li>
+                                    <label for="Child1" class="check child">
+                                        <input type="checkbox" id="Child1" class="Children">
+
+                                        Child1</label>
+                                    <p></p>
+                                </li>
+                                <li>
+                                    <label for="Child2" class="check child">
+                                        <input type="checkbox" id="Child2" class="Children">
+
+                                        Child2</label>
+                                    <p></p>
+                                </li>
+                                <li>
+                                    <label for="Child3" class="check child">
+                                        <input type="checkbox" id="Child3" class="Children">
+
+                                        Child3</label>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <ul>
+                        <li>
+                            <label for="explosives" class="check parent">
+                                <input type='checkbox' id="explosives" class="heading">
+                                Duck and Cover</label>
+                            <ul>
+                                <li>
+                                    <label for="Child1" class="check child">
+                                        <input type="checkbox" id="Child1" class="Children">
+
+                                        Child1</label>
+                                    <p></p>
+                                </li>
+                                <li>
+                                    <label for="Child2" class="check child">
+                                        <input type="checkbox" id="Child2" class="Children">
+
+                                        Child2</label>
+                                    <p></p>
+                                </li>
+                                <li>
+                                    <label for="Child3" class="check child">
+                                        <input type="checkbox" id="Child3" class="Children">
+
+                                        Child3</label>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <ul>
+                        <li>
+                            <label for="melee" class="check parent">
+                                <input type='checkbox' id="melee" class="heading">
+                                Grognak the Barbarian</label>
+                            <ul>
+                                <li>
+                                    <label for="Child1" class="check child">
+                                        <input type="checkbox" id="Child1" class="Children">
+
+                                        Child1</label>
+                                    <p></p>
+                                </li>
+                                <li>
+                                    <label for="Child2" class="check child">
+                                        <input type="checkbox" id="Child2" class="Children">
+
+                                        Child2</label>
+                                    <p></p>
+                                </li>
+                                <li>
+                                    <label for="Child3" class="check child">
+                                        <input type="checkbox" id="Child3" class="Children">
+
+                                        Child3</label>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <ul>
+                        <li>
+                            <label for="guns" class="check parent">
+                                <input type='checkbox' id="guns" class="heading">
+                                Guns and Bullets</label>
+                            <ul>
+                                <li>
+                                    <label for="Child1" class="check child">
+                                        <input type="checkbox" id="Child1" class="Children">
+
+                                        Child1</label>
+                                    <p></p>
+                                </li>
+                                <li>
+                                    <label for="Child2" class="check child">
+                                        <input type="checkbox" id="Child2" class="Children">
+
+                                        Child2</label>
+                                    <p></p>
+                                </li>
+                                <li>
+                                    <label for="Child3" class="check child">
+                                        <input type="checkbox" id="Child3" class="Children">
+
+                                        Child3</label>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <ul>
+                        <li>
+                            <label for="speech" class="check parent">
+                                <input type='checkbox' id="speech" class="heading">
+                                Lying, Congressional Style</label>
+                            <ul>
+                                <li>
+                                    <label for="Child1" class="check child">
+                                        <input type="checkbox" id="Child1" class="Children">
+
+                                        Child1</label>
+                                    <p></p>
+                                </li>
+                                <li>
+                                    <label for="Child2" class="check child">
+                                        <input type="checkbox" id="Child2" class="Children">
+
+                                        Child2</label>
+                                    <p></p>
+                                </li>
+                                <li>
+                                    <label for="Child3" class="check child">
+                                        <input type="checkbox" id="Child3" class="Children">
+
+                                        Child3</label>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <ul>
+                        <li>
+                            <label for="energy" class="check parent">
+                                <input type='checkbox' id="energy" class="heading">
+                                Nikola Tesla and You</label>
+                            <ul>
+                                <li>
+                                    <label for="Child1" class="check child">
+                                        <input type="checkbox" id="Child1" class="Children">
+
+                                        Child1</label>
+                                    <p></p>
+                                </li>
+                                <li>
+                                    <label for="Child2" class="check child">
+                                        <input type="checkbox" id="Child2" class="Children">
+
+                                        Child2</label>
+                                    <p></p>
+                                </li>
+                                <li>
+                                    <label for="Child3" class="check child">
+                                        <input type="checkbox" id="Child3" class="Children">
+
+                                        Child3</label>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <ul>
+                        <li>
+                            <label for="unarmed" class="check parent">
+                                <input type='checkbox' id="unarmed" class="heading">
+                                Pugilism Illustrated</label>
+                            <ul>
+                                <li>
+                                    <label for="Child1" class="check child">
+                                        <input type="checkbox" id="Child1" class="Children">
+
+                                        Child1</label>
+                                    <p></p>
+                                </li>
+                                <li>
+                                    <label for="Child2" class="check child">
+                                        <input type="checkbox" id="Child2" class="Children">
+
+                                        Child2</label>
+                                    <p></p>
+                                </li>
+                                <li>
+                                    <label for="Child3" class="check child">
+                                        <input type="checkbox" id="Child3" class="Children">
+
+                                        Child3</label>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <ul>
+                        <li>
+                            <label for="barter" class="check parent">
+                                <input type='checkbox' id="barter" class="heading">
+                                Tales of a Junktown Jerky Vendor</label>
+                            <ul>
+                                <li>
+                                    <label for="Child1" class="check child">
+                                        <input type="checkbox" id="Child1" class="Children">
+
+                                        Child1</label>
+                                    <p></p>
+                                </li>
+                                <li>
+                                    <label for="Child2" class="check child">
+                                        <input type="checkbox" id="Child2" class="Children">
+
+                                        Child2</label>
+                                    <p></p>
+                                </li>
+                                <li>
+                                    <label for="Child3" class="check child">
+                                        <input type="checkbox" id="Child3" class="Children">
+
+                                        Child3</label>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <ul>
+                        <li>
+                            <label for="lockpick" class="check parent">
+                                <input type='checkbox' id="lockpick" class="heading">
+                                Tumblers Today</label>
+                            <ul>
+                                <li>
+                                    <label for="Child1" class="check child">
+                                        <input type="checkbox" id="Child1" class="Children">
+
+                                        Child1</label>
+                                    <p></p>
+                                </li>
+                                <li>
+                                    <label for="Child2" class="check child">
+                                        <input type="checkbox" id="Child2" class="Children">
+
+                                        Child2</label>
+                                    <p></p>
+                                </li>
+                                <li>
+                                    <label for="Child3" class="check child">
+                                        <input type="checkbox" id="Child3" class="Children">
+
+                                        Child3</label>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <ul>
+                        <li>
+                            <label for="survival" class="check parent">
+                                <input type='checkbox' id="survival" class="heading">
+                                Wasteland Survival Guide</label>
+                            <ul>
+                                <li>
+                                    <label for="Child1" class="check child">
+                                        <input type="checkbox" id="Child1" class="Children">
+
+                                        Child1</label>
+                                    <p></p>
+                                </li>
+                                <li>
+                                    <label for="Child2" class="check child">
+                                        <input type="checkbox" id="Child2" class="Children">
+
+                                        Child2</label>
+                                    <p></p>
+                                </li>
+                                <li>
+                                    <label for="Child3" class="check child">
+                                        <input type="checkbox" id="Child3" class="Children">
+
+                                        Child3</label>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <ul>
+                        <li>
+                            <label for="parent" class="check parent">
+                                <input type='checkbox' id="parent" class="heading">
+                                Parent</label>
+                            <ul>
+                                <li>
+                                    <label for="Child1" class="check child">
+                                        <input type="checkbox" id="Child1" class="Children">
+
+                                        Child1</label>
+                                    <p></p>
+                                </li>
+                                <li>
+                                    <label for="Child2" class="check child">
+                                        <input type="checkbox" id="Child2" class="Children">
+
+                                        Child2</label>
+                                    <p></p>
+                                </li>
+                                <li>
+                                    <label for="Child3" class="check child">
+                                        <input type="checkbox" id="Child3" class="Children">
+
+                                        Child3</label>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+
+
+                </div>
+            </div>
+
+
+
+            <div id="companions">
+                <div class="wrapper">
+                    <ul>
+                        <li>
+                            <label for="parent" class="check parent">
+                                <input type='checkbox' id="companionsParent">
+                                Parent</label>
+                            <ul>
+                                <li>
+                                    <label for="Child1" class="check child">
+                                        <input type="checkbox" id="Child1" class="companions">
+
+                                        Child1</label>
+                                </li>
+                                <li>
+                                    <label for="Child2" class="check child">
+                                        <input type="checkbox" id="Child2" class="companions">
+
+                                        Child2</label>
+                                </li>
+                                <li>
+                                    <label for="Child3" class="check child">
+                                        <input type="checkbox" id="Child3" class="companions">
+
+                                        Child3</label>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="snow_globes">
+                <div class="wrapper">
+                    <ul>
+                        <li>
+                            <label for="parent" class="check parent">
+                                <input type='checkbox' id="parent">
+                                Parent</label>
+                            <ul>
+                                <li>
+                                    <label for="Child1" class="check child">
+                                        <input type="checkbox" id="Child1" class="Children">
+
+                                        Child1</label>
+                                    <p></p>
+                                </li>
+                                <li>
+                                    <label for="Child2" class="check child">
+                                        <input type="checkbox" id="Child2" class="Children">
+
+                                        Child2</label>
+                                    <p></p>
+                                </li>
+                                <li>
+                                    <label for="Child3" class="check child">
+                                        <input type="checkbox" id="Child3" class="Children">
+
+                                        Child3</label>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+
+
+
+        </div>
+
+
+        <!-- <div class="hold"></div>
+        <div class="foot" id="footer">
+            <footer-component></footer-component>
+        </div> -->
+    </div>
+
+
+    <script type="text/javascript" src="./js/fnv.js"></script>
+</body>
+
+</html>

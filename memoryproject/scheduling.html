@@ -40,7 +40,7 @@
                     <label class="labels">Start Time:</label>
                     <input type="text" name="startTime" id="startTime" class="schedule" />
                     <select id="category">
-                        <option value="All Day" selected>All Day</option>
+                        <option value="All-day" selected>All-day</option>
                         <option value="AM">AM</option>
                         <option value="PM">PM</option>
                     </select>
@@ -70,13 +70,13 @@
                         </div>
                     </div>
                     <ul class="dayName" id="dayName">
-                        <li id="Sun">Sun</li>
-                        <li id="Mon">Mon</li>
-                        <li id="Tue">Tue</li>
-                        <li id="Wed">Wed</li>
-                        <li id="Thu">Thu</li>
-                        <li id="Fri">Fri</li>
-                        <li id="Sat">Sat</li>
+                        <li id="Sun" class='dateBox'>Sun</li>
+                        <li id="Mon" class='dateBox'>Mon</li>
+                        <li id="Tue" class='dateBox'>Tue</li>
+                        <li id="Wed" class='dateBox'>Wed</li>
+                        <li id="Thu" class='dateBox'>Thu</li>
+                        <li id="Fri" class='dateBox'>Fri</li>
+                        <li id="Sat" class='dateBox'>Sat</li>
                     </ul>
 
                     <ul class="dayList" id="dayList">
@@ -90,7 +90,7 @@
             <div class="wrapper">
 
                 <div class="container">
-                    <h1 style="border-top: 3px solid black;text-align:center;font-size: 20px;">Events</h1>
+                    <h1 class='headingEvent' style="border-top: 3px solid black;text-align:center;font-size: 20px;">Events</h1>
                     <div class="events" id="events"></div>
                 </div>
             </div>

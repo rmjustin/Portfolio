@@ -36,7 +36,7 @@ class Header extends HTMLElement {
                 color: black;
                 text-align:center;
                 background-color: white;
-                border: 1px solid rgba(0, 0, 0, 0.5);
+                border: 3px solid rgba(0, 0, 0, 1);
                 border-radius: 1px;
               }
               
@@ -70,7 +70,7 @@ class Header extends HTMLElement {
               }
               
               .dropdown-container a:hover {
-                background-color: #757575;
+                background-color: black;
                 overflow-y: hidden;
               }
               
@@ -98,7 +98,7 @@ class Header extends HTMLElement {
                 margin: 0px;
                 color: black;
                 background-color: white;
-                border: 1px solid rgba(0, 0, 0, 0.5);
+                border: 3px solid rgba(0, 0, 0, 1);
                 border-radius: 1px;
               }
               

@@ -8,6 +8,11 @@ const object = {
     inUse: []
 };
 
+const holiday = {
+    date: ['November_30'],
+    day: ['End Day']
+};
+
 
 let direction = 0;
 let yearCycle = 0;
@@ -122,12 +127,12 @@ function saving() {
     }
     //create calendar marker
     let note = createMarker(symbol, name);
-
+    let time = start.value + ' ' + timeOfDay;
+    if (time == ' All-day') time = time.replace(' ', '');
     //format saved information
     let toStore = '<span class="memo ' + object.color[0] + '">'
         + symbol.replace('_', ' ') + ' ' + usedYear + '</span>'
-        + '<span class=deleter onclick=deleting(this) name = ' + name + '>' + 'X' + '</span>' + '<h3 id= ' + name + '>' + event.value + "</h3><p id='time'>" + start.value
-        + ' ' + timeOfDay + "</p><p id='description'>" + description.value + '<p>';
+        + '<span class=deleter onclick=deleting(this) name = ' + name + '>' + 'X' + '</span>' + '<h3 id= ' + name + '>' + event.value + "</h3><p id='time'>" + time + "</p><p id='description'>" + description.value + '<p>';
     object.color.push(object.color.splice(0, 1)[0]);
     let things = document.createElement('div');
     things.setAttribute('class', 'event');
@@ -153,6 +158,7 @@ function saving() {
     event.value = '';
     startTime.value = '';
     description.value = '';
+    timeOfDay.value = 'All-day';
     schedule('close', '1', 0);
     saveLocal();
 }
@@ -268,7 +274,7 @@ function createCalendar(direction) {
     let headMonth = document.createElement("div");
     headMonth.setAttribute('id', month);
     let titleMonth = document.createElement("h1");
-    titleMonth.innerHTML = months[month] + ' ' + year;
+    titleMonth.innerHTML = months[month] + '<br>' + year;
     headMonth.appendChild(titleMonth);
     document.getElementById("month").appendChild(headMonth);
     loadMarkers();
@@ -297,11 +303,14 @@ function addDaysToHTML(days, startDay, endDay, prevMonth, nextMonth, year) {
         let dayNum;
         if (i < 9) {
             id = namedMonth + '_0' + (i + 1);
-            dayNum = "<li id='" + id + "' onclick=schedule('open',this.id," +
+            if(holiday.date.includes(id)) console.log('holday');
+            dayNum = "<li id='" + id + "' class='dateBox' onclick=schedule('open',this.id," +
                 year + ")><div style='padding-top: 5px;'>" + (i + 1) + "</div></li>";
         } else {
-            dayNum = "<li id='" + namedMonth + '_' + (i + 1) + "' onclick=schedule('open',this.id," +
-                year + ")><div style='padding-top: 5px;'>" + (i + 1) + "</div></li>";
+            id = namedMonth + '_' + (i + 1);
+            
+            dayNum = "<li id='" + id + "' class='dateBox' onclick=schedule('open',this.id," +
+                year + ")><div style='padding-top: 5px;'>" + (i + 1) +"</div></li>";
         }
         document.getElementById("dayList").innerHTML += dayNum;
     }
@@ -394,6 +403,7 @@ function loadLocal() {
         if (stuff[i] == "</div></div>") stuff.splice(i, 1);
     }
     let temp = stuff;
+    console.log(temp);
     let count = 0;
     object.children = [];
     for (let i = 0; i < temp.length; i++) {
@@ -401,7 +411,7 @@ function loadLocal() {
         let diff = currMonth;
         let offset = months.indexOf(temp[i].substring(28, temp[i].indexOf("_")));
         count = moveToLoadCalendar(diff, offset);
-
+        console.log(temp[i]);
         let day = document.getElementById(temp[i].substring(28, temp[i].indexOf("_") + 3));
         if (day == 'null') {
             return;
@@ -409,19 +419,31 @@ function loadLocal() {
         let rearrange = temp[i].split(' ');
         object.year = (rearrange[4].substring(7, 11));
         loading.innerHTML += temp[i];
+        console.log(temp[i]);
         //create fake event for marker+event list
         day.click();
+        console.log(temp[i]);
+        let things = temp[i].split('><');
+        console.log(things);
         let ele = document.getElementById(temp[i].substring(28, temp[i].indexOf("_") + 4));
         let eventName = ele.querySelector("#" + temp[i].substring(28, temp[i].indexOf("_") + 4)).innerHTML;
         let eventTime = ele.querySelector("#time").innerHTML;
+        console.log(ele.querySelector("#time").innerHTML);
         let description = ele.querySelector("#description").innerHTML;
         let scheduler = document.getElementById('scheduler');
         scheduler.querySelector('#eventName').value = eventName;
-        if (eventTime == '   All day') {
-            scheduler.querySelector('#startTime').value = '';
-        } else {
-            scheduler.querySelector('#startTime').value = eventTime.split(' ')[0];
-        }
+        console.log(eventName);
+        console.log(eventTime);
+        console.log(description);
+
+        console.log(temp[i]);
+        if(eventTime == 'All-day') eventTime = ' ' + eventTime;
+        eventTime = eventTime.split(' ');
+        console.log(eventTime);
+        scheduler.querySelector('#startTime').value = eventTime[0];
+        console.log(eventTime[1]);
+        scheduler.querySelector('#category').value = eventTime[1];
+
         scheduler.querySelector('#description').value = description;
         document.getElementById('saveMe').click();  //saves schedule card
 

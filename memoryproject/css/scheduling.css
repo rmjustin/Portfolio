@@ -12,6 +12,8 @@
 }
 
 
+
+
 .upcoming {
     grid-area: upcoming;
 }
@@ -20,7 +22,7 @@
 .events {
     width: 100%;
     height: 80%;
-    border: 3px solid black;
+    border: 3px solid #000000;
     align-self: center;
     overflow: scroll;
     box-shadow: 5px 5px 10px black;
@@ -36,20 +38,21 @@
 } */
 
 p {
-    margin: 0;
+    margin: 5px;
+    font-size: 14px;
 }
 
 h3 {
-    margin: 0;
+    margin: 5px;
     font-size: 18px;
 }
 
 .event {
     white-space: pre-wrap;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #000000;
     border-width: 90%;
     word-wrap: break-word;
-    padding: 0 10px;
+    padding: 0;
 }
 
 .events.deleter {
@@ -81,6 +84,12 @@ h3 {
     width: 90%;
     min-width: 225px;
     z-index: 0;
+    box-shadow: 5px 12px 7px;
+}
+
+.dateBox, .heading, .events, .headingEvent {
+    /* background-color: #2D3032; */
+    color: black;
 }
 
 .scheduler {
@@ -91,7 +100,7 @@ h3 {
     margin: auto;
     z-index: 1;
     display: none;
-    border: 3px solid black;
+    border: 3px solid #000000;
     position: absolute;
 }
 
@@ -102,25 +111,25 @@ h3 {
 .memo {
     border-style: none solid solid none;
     border-width: 3px;
-    border-color: black;
+    border-color: #000000;
     font-weight: bold;
     font-size: 20px;
 }
 
 .red {
-    color: red;
+    color: rgb(211, 0, 0);
 }
 
 .green {
-    color: green;
+    color: rgb(0, 187, 0);
 }
 
 .blue {
-    color: blue;
+    color: rgb(0, 0, 153);
 }
 
 .purple {
-    color: rgb(141, 0, 177);
+    color: rgb(140, 0, 175);
 }
 
 .note:hover {
@@ -129,18 +138,20 @@ h3 {
 
 .schedule {
     margin: 10px 0px 10px 5px;
+    min-width: 15%;
+    width: fit-content;
 }
 .alert::placeholder {
     color: red;
 }
 
 #startTime {
-    width: 45px;
+    width: 15%;
 }
 
 #scheduledDay {
     font-size: 25px;
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid #000000;
 }
 
 .labels {
@@ -163,7 +174,7 @@ textarea {
     width: 80px;
     font-size: 15px;
     display: inline-block;
-    border: 2px solid black;
+    border: 2px solid #000000;
     border-radius: 0;
 }
 
@@ -174,7 +185,7 @@ textarea {
 }
 
 #description {
-    margin: 5px 0;
+    
 }
 
 .close {
@@ -196,7 +207,7 @@ textarea {
     flex-wrap: wrap;
     list-style: none;
     text-align: center;
-    padding: 5px 0;
+    padding: 0;
 }
 
 .calendar li {
@@ -205,19 +216,19 @@ textarea {
 
 .dayName {
     margin: 0;
-    padding: 5px 0;
+    padding: 10px 0 0 0;
     height: 10%;
-    border-bottom: 2px solid black;
-    border-top: 2px solid black;
+    border-bottom: 5px solid #000000;
+    border-top: 5px solid #000000;
     font-weight: bold;
 }
 
-.dayName li:not(#Sat) {
-    border-right: 1px solid black;
+.dayName li {
+    outline: 2px solid #000000;
 }
 
 .dayList {
-    height: 60%;
+    height: 65%;
     gap: 0;
     margin: 0;
     justify-content: center;
@@ -227,7 +238,7 @@ textarea {
 .dayList li {
     min-height: 51px;
     height: 25%;
-    outline: 1px solid black;
+    outline: 2px solid #000000;
 }
 
 .dayList li:hover {
@@ -241,7 +252,7 @@ textarea {
     height: 10%;
     justify-content: center;
     width: 100%;
-    border-top: 3px solid black;
+    outline: 2px solid black;
 }
 
 .active {
@@ -255,7 +266,7 @@ textarea {
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 2px black;
+    border: 2px #000000;
     border-style: none solid;
 }
 
@@ -275,9 +286,9 @@ h1 {
 }
 
 #next {
-    border: 0px solid black;
+    border: 0px solid #000000;
     border-radius: 60px;
-    background-color: rgba(207, 207, 207, 0.733);
+    background-color: #7D7F80;
     font-weight: bold;
     font-size: 30px;
     float: right;
@@ -291,7 +302,7 @@ h1 {
 #prev {
     /* border: 0px solid black; */
     border-radius: 60px;
-    background-color: rgba(207, 207, 207, 0.733);
+    background-color: #7D7F80;
     font-weight: bold;
     font-size: 30px;
 }
@@ -299,7 +310,7 @@ h1 {
 .nextMonth,
 .prevMonth {
     background-color: rgb(77, 77, 77);
-    outline: 1px solid black;
+    outline: 2px solid black;
     color: white;
 }
 
@@ -325,7 +336,7 @@ h1 {
         margin: auto;
         z-index: 1;
         display: none;
-        border: 3px solid black;
+        border: 3px solid #000000;
         position: absolute;
     }
 
@@ -350,7 +361,7 @@ h1 {
     }
 
     .upcoming {
-        overflow: scroll;
+        padding-top: 10px;
     }
 
     .container {
@@ -381,7 +392,7 @@ h1 {
         margin: auto;
         z-index: 1;
         display: none;
-        border: 3px solid black;
+        border: 3px solid #000000;
         position: absolute;
     }
 

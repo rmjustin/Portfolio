@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="author" content="">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="css/style.css" rel="stylesheet">
+    <style>
+        button {
+            background: none;
+            border: none;
+            outline: none;
+            box-shadow: none;
+        }
+    </style>
+    <script>
+        function strike(element) {
+            if (element.style.textDecoration == 'line-through') {
+                element.style.textDecoration = 'none';
+            } else {
+                element.style.textDecoration = 'line-through';
+            }
+        }
+    </script>
+</head>
+
+<body>
+
+    <button id='hello' onclick="strike(this)">Hello, world!</button>
+    <button id="same" onclick="strike(this)">Same</button>
+
+</body>
+
+</html>

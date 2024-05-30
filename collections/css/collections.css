@@ -1,0 +1,16 @@
+.grid {
+    display: grid;
+    grid-template-areas:
+        'menu nav'
+        'menu main'
+        'hold foot';
+    gap: 0px;
+    padding: 0px;
+    height: 100%;
+    grid-template-columns: 1fr 5fr;
+    grid-template-rows: auto 1fr auto;
+}
+
+.menu {
+    height: 100%;
+}
